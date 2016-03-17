@@ -101,9 +101,10 @@ def extract_json(json_path):
 
 def main():
     json_path_regex = sys.argv[1]
+    print glob.glob(json_path_regex)
     for json_path in glob.glob(json_path_regex):
         print json_path
-        extract_json(json_path)
+        #extract_json(json_path)
 
 if __name__ == '__main__':
     main()
