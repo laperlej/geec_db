@@ -101,8 +101,7 @@ def extract_json(json_path):
 
 def main():
     for json_path in sys.argv[1:]:
-        print json_path
-        #extract_json(json_path)
+        extract_json(json_path)
 
 if __name__ == '__main__':
     main()
