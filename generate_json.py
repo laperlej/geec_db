@@ -30,6 +30,7 @@ class IhecDb(object):
 def main():
     sqlite_path = sys.argv[1]
     ihec_db = IhecDb(sqlite_path)
+    ihec_db.get_json_view()
 
 if __name__ == '__main__':
     main()
