@@ -25,7 +25,7 @@ class IhecDb(object):
                  LEFT JOIN hub_description
                  ON datasets.hub_id = hub_description.hub_id"""
         self.cursor.execute(sql)
-        return self.cursor.fetchall()
+        print self.cursor.fetchall()
 
 def list_2_json(datasets):
     json_content = {'datasets':[]}
