@@ -25,7 +25,7 @@ class IhecDb(object):
                  LEFT JOIN hub_description
                  ON datasets.hub_id = hub_description.hub_id"""
         self.cursor.execute(sql)
-        print self.cursor.fetchall()
+        return self.cursor.fetchall()
 
 def list_2_json(datasets):
     json_content = {'datasets':[]}
@@ -49,7 +49,7 @@ def main():
     sqlite_path = sys.argv[1]
     out_path = sys.argv[1]
     ihec_db = IhecDb(sqlite_path)
-    datasets = ihec_db.get_json_view
+    datasets = ihec_db.get_json_view()
     json = list_2_json(datasets)
     with open(out_path, 'w') as output_file:
         output_file.write(json)
