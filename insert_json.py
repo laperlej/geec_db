@@ -100,9 +100,7 @@ def extract_json(json_path):
     ihec_db.insert_json(json_content, group)
 
 def main():
-    json_path_regex = sys.argv[1]
-    print glob.glob(json_path_regex)
-    for json_path in glob.glob(json_path_regex):
+    for json_path in sys.argv[1:]:
         print json_path
         #extract_json(json_path)
 
