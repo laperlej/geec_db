@@ -47,7 +47,7 @@ def list_2_json(datasets):
 
 def main():
     sqlite_path = sys.argv[1]
-    out_path = sys.argv[1]
+    out_path = sys.argv[2]
     ihec_db = IhecDb(sqlite_path)
     datasets = ihec_db.get_json_view()
     json = list_2_json(datasets)

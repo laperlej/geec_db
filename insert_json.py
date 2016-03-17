@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import sqlite3
+import glob
 
 DB_ROOT = os.path.dirname(__file__)
 DB_PATH = DB_ROOT + 'ihec_db.sqlite'
@@ -92,11 +93,16 @@ class IhecDb(object):
 def extract_analysis_group(full_path):
     return os.path.basename(full_path).split('.')[0]
 
-def main():
-    group = extract_analysis_group(sys.argv[1])
-    json_content = read_json(sys.argv[1])
+def extract_json(json_path):
+    group = extract_analysis_group(json_path)
+    json_content = read_json(json_path)
     ihec_db = IhecDb(DB_PATH)
     ihec_db.insert_json(json_content, group)
+
+def main():
+    json_path_regex = sys.argv[1]
+    for json_path in glob.glob(json_path_regex):
+        extract_json(json_path)
 
 if __name__ == '__main__':
     main()
