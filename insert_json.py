@@ -50,7 +50,13 @@ class IhecDb(object):
         sql_query = 'INSERT OR IGNORE INTO hub_description VALUES (?, ?, ?, ?)'
         self.cursor.execute(sql_query, tuple_to_insert)
         self.commit()
-        return self.cursor.lastrowid
+        if self.cursor.lastrowid:
+            return self.cursor.lastrowid
+        else:
+            sql_query = 'SELECT hub_id FROM description WHERE assembly=? AND publishing_group=? AND release_date=?'
+            self.cursor.execute(sql_query, tuple_to_insert[1:])
+            hub_id = self.cursor.fetchone()
+            return hub_id[0]
 
     def insert_datasets(self, datasets, assembly, hub_id, group):
         for dataset in datasets:
