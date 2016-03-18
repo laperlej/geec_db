@@ -53,7 +53,7 @@ class IhecDb(object):
         if self.cursor.lastrowid:
             return self.cursor.lastrowid
         else:
-            sql_query = 'SELECT hub_id FROM description WHERE assembly=? AND publishing_group=? AND release_date=?'
+            sql_query = 'SELECT hub_id FROM hub_description WHERE assembly=? AND publishing_group=? AND release_date=?'
             self.cursor.execute(sql_query, tuple_to_insert[1:])
             hub_id = self.cursor.fetchone()
             return hub_id[0]
