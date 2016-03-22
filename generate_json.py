@@ -1,3 +1,6 @@
+"""takes a database and outputs a json file for geec_web
+"""
+
 import sys
 import sqlite3
 import json
