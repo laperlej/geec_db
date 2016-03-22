@@ -16,7 +16,7 @@ class IhecDb(object):
 
     def get_json_view(self):
         sql = """SELECT datasets.file_path,
-                        datasets.md5sum,
+                        datasets.md5sum
                  FROM datasets"""
         self.cursor.execute(sql)
         return self.cursor.fetchall()
