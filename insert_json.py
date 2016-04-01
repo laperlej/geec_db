@@ -69,7 +69,14 @@ class IhecDb(object):
 
     def _insert_dataset(self, dataset, assembly, hub_id, group):
         file_name = dataset["ihec_data_portal"]["local_files"]["signal"]["file_name"]
+        if not file_name:
+            file_name = dataset["ihec_data_portal"]["local_files"]["methylation_profile"]["file_name"]
+
         md5sum = dataset["ihec_data_portal"]["local_files"]["signal"]["md5sum"]
+        if not md5sum:
+            md5sum = dataset["ihec_data_portal"]["local_files"]["methylation_profile"]["md5sum"]
+
+
         assay = dataset["ihec_data_portal"]["assay"]
         assay_category = dataset["ihec_data_portal"]["assay_category"]
         cell_type = dataset["ihec_data_portal"]["cell_type"]
