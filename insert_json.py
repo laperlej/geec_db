@@ -68,14 +68,15 @@ class IhecDb(object):
         self.commit()
 
     def _insert_dataset(self, dataset, assembly, hub_id, group):
-        file_name = dataset["ihec_data_portal"]["local_files"]["signal"]["file_name"]
-        if not file_name:
-            file_name = dataset["ihec_data_portal"]["local_files"]["methylation_profile"]["file_name"]
-
-        md5sum = dataset["ihec_data_portal"]["local_files"]["signal"]["md5sum"]
-        if not md5sum:
-            md5sum = dataset["ihec_data_portal"]["local_files"]["methylation_profile"]["md5sum"]
-
+        local_files = dataset["ihec_data_portal"]["local_files"]
+        if "signal" in local_files:
+            file_name = local_files["signal"]["file_name"]
+            md5sum = local_files["signal"]["md5sum"]
+        elif "methylation_profile" in local_files:
+            file_name = local_files["methylation_profile"]["file_name"]
+            md5sum = local_files["methylation_profile"]["md5sum"]
+        else:
+            raise KeyError
 
         assay = dataset["ihec_data_portal"]["assay"]
         assay_category = dataset["ihec_data_portal"]["assay_category"]
