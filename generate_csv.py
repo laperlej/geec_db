@@ -45,7 +45,7 @@ def list_2_csv(datasets):
             'md5sum': dataset[7],
             'publishing_group': dataset[8],
         }
-        csv_line = [data['md5sum'], count, '{0}_{1}'.format(data['assay'],data['cell_type']).replace(' ', '_'), data['cell_type_category'], data['cell_type'], data['assay_category'], data['assay'], data['analysis_group']]
+        csv_line = [data['md5sum'], str(count), '{0}_{1}'.format(data['assay'],data['cell_type']).replace(' ', '_'), data['cell_type_category'], data['cell_type'], data['assay_category'], data['assay'], data['analysis_group']]
         csv_content.append(','.join(csv_line))
         count += 1
     return header + '\n'.join(csv_content)
