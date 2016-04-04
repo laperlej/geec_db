@@ -30,7 +30,7 @@ class IhecDb(object):
         return self.cursor.fetchall()
 
 def list_2_csv(datasets):
-    header = "datasets, #, repBiol, cellTypeCategory, cellType, assayCategory, assay, consortium"
+    header = "datasets, #, repBiol, cellTypeCategory, cellType, assayCategory, assay, consortium\n"
     csv_content = []
     count = 1
     for dataset in datasets:
@@ -45,6 +45,9 @@ def list_2_csv(datasets):
             'md5sum': dataset[7],
             'publishing_group': dataset[8],
         }
+        for key in data:
+            if ' ' in data[key]:
+                data[key] = '"{0}"'.format(data[key])
         csv_line = [data['md5sum'], str(count), '{0}_{1}'.format(data['assay'],data['cell_type']).replace(' ', '_'), data['cell_type_category'], data['cell_type'], data['assay_category'], data['assay'], data['analysis_group']]
         csv_content.append(','.join(csv_line))
         count += 1
