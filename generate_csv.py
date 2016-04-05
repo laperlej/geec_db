@@ -49,6 +49,8 @@ def list_2_csv(datasets):
         for i in range(len(csv_line)):
             if ' ' in csv_line[i]:
                 csv_line[i] = '"{0}"'.format(csv_line[i])
+            if ',' in csv_line[i]:
+                csv_line[i] = csv_line[i].replace(',', '')
         csv_content.append(','.join(csv_line))
         count += 1
     return header + '\n'.join(csv_content)
